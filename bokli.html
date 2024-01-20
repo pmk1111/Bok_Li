@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>간편 복리계산기</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Sunflower:wght@500&display=swap"
+      rel="stylesheet"
+    />
+		<link rel="stylesheet" href="bokli.css">
+    
+  </head>
+  <body class="dark">
+    <header>
+      <nav class="nav_bar">
+        <div class="nav_container">
+          <div class="logo_wrap">
+            <img class="logo" src="img/m.lab_dark.png" onclick="goMainPage()" />
+          </div>
+          <div class="site_title_wrap">
+            <h1 class="title">간편 복리 계산기</h1>
+          </div>
+          <div class="utils_wrap">
+            <div class="dark_mode_btn" onclick="setTheme()">
+              <img class="set_theme_img" src="img/moon.png" />
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="main_wrap">
+        <div class="cal_area">
+          <div class="inner_container">
+            <h1 style="font-size: 40px; padding-bottom: 20px">복리 계산하기</h1>
+            <div class="inner_container_wrap">
+              <h3>시작 금액</h3>
+              <input
+                type="text"
+                class="amount_input"
+                placeholder="금액을 입력하세요"
+								oninput="validateNumberInput(this)"
+              />
+            </div>
+            <div class="inner_container_wrap">
+              <h3>기간</h3>
+              <input
+                type="text"
+                class="duration_input"
+                placeholder="기간을 입력하세요"
+								oninput="validateNumberInput(this)"
+              />
+            </div>
+            <div class="inner_container_wrap">
+              <h3>수익률 (%)</h3>
+              <input
+                type="text"
+                class="profit_input"
+                placeholder="수익률을 입력하세요"
+								oninput="validateNumberInput(this)"
+              />
+            </div>
+            <div class="inner_container_wrap">
+              <button id="cal_btn" class="do_cal_btn" type="button" onclick="calculate()">
+                계산하기
+              </button>
+            </div>
+          </div>
+
+          <div class="total_result_container">
+            <div class="total_area">
+              <div class="total_profit">
+								<div class="flex_center">
+                	<h2>총 수익</h2>
+									<p class="color_green"></h2>
+								</div>
+              </div>
+              <div class="total_profit_persentage">
+								<div class="flex_center">
+                	<h2>총 수익률</h2>
+									<p class="color_green"></p>
+								</div>
+              </div>
+            </div>
+          </div>
+
+					<div class="profit_detail_container">
+						<table class="profit_detail_table">
+
+						</table>
+					</div>
+        </div>
+        <div>
+          <aside></aside>
+        </div>
+      </div>
+    </main>
+
+    <script src="bokli.js"></script>
+  </body>
+</html>
