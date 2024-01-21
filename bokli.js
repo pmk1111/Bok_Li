@@ -15,6 +15,10 @@ const totalProfitPercent = document.querySelector(".total_profit_persentage p");
 const inputs = document.getElementsByTagName("input");
 const calBtn = document.querySelector(".do_cal_btn");
 
+const navBar = document.querySelector(".nav_bar")
+const main = document.querySelector("main")
+const calAreaWrap = document.querySelector(".cal_area");
+
 function goMainPage() {
   window.location.href = "bokli.html";
 }
@@ -57,8 +61,13 @@ function setTheme() {
       inputs[i].style.backgroundColor = "white";
       inputs[i].style.color = "#212529";
     }
-    calBtn.style.backgroundColor = "white";
-    calBtn.style.color = "#212529";
+
+    navBar.style.borderBottom = "1px solid #aaaaaa"
+    main.style.backgroundColor = "lightgrey"
+    calAreaWrap.style.backgroundColor = "white"
+    calAreaWrap.style.borderColor = "#aaaaaa"
+    calBtn.style.backgroundColor = "#52bcfd";
+    calBtn.style.color = "white";
 
     rows.forEach((row, index) => {
       if (index % 2 == 1) {
@@ -79,6 +88,11 @@ function setTheme() {
       inputs[i].style.backgroundColor = "#212529";
       inputs[i].style.color = "white";
     }
+
+    navBar.style.borderBottom = "1px solid #4f4f4f"
+    main.style.backgroundColor = "#151515"
+    calAreaWrap.style.backgroundColor = "#151515"
+    calAreaWrap.style.borderColor = "#4f4f4f"
     calBtn.style.backgroundColor = "#212529";
     calBtn.style.color = "white";
 
@@ -122,6 +136,25 @@ function calculate() {
 }
 
 function doCal() {
+  const calArea = document.querySelector(".cal_area_wrap");
+  const calBtnWrap = document.querySelector(".cal_btn_wrap");
+
+  const csvBtnWrap = document.createElement("div");
+  csvBtnWrap.classList.add("inner_container_wrap", "csv_btn_wrap");
+
+  const csvBtn = document.createElement("button");
+  csvBtn.classList.add("csv_btn")
+  csvBtn.type = "button"
+  csvBtn.addEventListener("click", function(){
+    downloadCSV();
+  })
+
+  csvBtn.classList.add("csv_btn");
+  csvBtn.textContent = "CSV 다운로드"
+
+  csvBtnWrap.append(csvBtn);
+  calArea.insertBefore(csvBtnWrap, calBtnWrap.nextSibling);
+
   const totalResultArea = document.querySelector(".total_result_container");
   // 입력값 가져오기
   const amount = parseFloat(document.querySelector(".amount_input").value);
@@ -146,6 +179,10 @@ function doCal() {
   th2.textContent = "수익";
   th3.textContent = "총액";
   th4.textContent = "수익률";
+
+  if (!bodyClassList.contains("dark")) {
+    firstTr.style.backgroundColor = "white";
+  }
 
   firstTr.append(th1);
   firstTr.append(th2);
@@ -209,4 +246,54 @@ function doCal() {
     totalResultArea.style.display = "flex";
     totalResultArea.style.justifyContent = "center";
   }
+
+  let rows = profitTable.querySelectorAll("tr");
+
+  if (!bodyClassList.contains("dark")) {
+    rows.forEach((row, index) => {
+      if (index % 2 == 1) {
+        row.style.backgroundColor = "lightgrey";
+      } else {
+        row.style.backgroundColor = "white";
+      }
+    });
+  }
 }
+
+function downloadCSV() {
+  // 테이블 요소 선택
+  const table = document.querySelector(".profit_detail_table");
+  
+  // CSV 문자열 초기화
+  let csv = '';
+
+  // 테이블 행 순회
+  for (let i = 0; i < table.rows.length; i++) {
+    const row = table.rows[i];
+
+    // 테이블 열 순회
+    for (let j = 0; j < row.cells.length; j++) {
+      const cellText = row.cells[j].textContent;
+
+      // 콤마가 있으면 더블 쿼트로 감싸기
+      const cellValue = cellText.includes(',') ? `"${cellText}"` : cellText;
+
+      csv += cellValue + ',';
+    }
+
+    csv += '\n';
+  }
+
+  // CSV 파일 다운로드
+  downloadFile(csv, 'table_data.csv');
+}
+
+
+function downloadFile(content, fileName) {
+  const blob = new Blob([content], { type: 'text/csv' });
+  const link = document.createElement('a');
+  link.href = window.URL.createObjectURL(blob);
+  link.download = fileName;
+  link.click();
+}
+
