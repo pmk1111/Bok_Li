@@ -173,10 +173,8 @@ function doCal() {
 
   switch (selectedLanguage) {
     case "ko":
-      csvBtn.textContent = "CSV 다운로드";
     case "kr":
       csvBtn.textContent = "CSV 다운로드";
-      break;
     case "en":
       csvBtn.textContent = "Download CSV";
       break;
@@ -223,11 +221,6 @@ function doCal() {
 
   switch (selectedLanguage) {
     case "ko":
-      th1.innerText = "기간";
-      th2.innerText = "수익";
-      th3.innerText = "총액";
-      th4.innerText = "수익률";
-      break;
     case "kr":
       th1.innerText = "기간";
       th2.innerText = "수익";
@@ -428,7 +421,6 @@ function getSupportedLanguage(lang) {
 function getTranslatedTitle(lang) {
   switch (lang) {
     case "ko":
-      return "간편 복리계산기";
     case "kr":
       return "간편 복리계산기";
     case "en":
@@ -446,7 +438,6 @@ function getTranslatedTitle(lang) {
 function getTranslatedDescription(lang) {
   switch (lang) {
     case "ko":
-      return "간편 복리 계산기: 계산 결과를 csv로 다운로드하세요.";
     case "kr":
       return "간편 복리 계산기: 계산 결과를 csv로 다운로드하세요.";
     case "en":
@@ -465,32 +456,6 @@ function updateContentByLanguage(lang) {
   // 사용자 언어에 따라 다른 텍스트로 변경
   switch (lang) {
     case "ko":
-      document.getElementById("calculation_title").innerText = "복리 계산하기";
-      document.getElementById("start_amount_label").innerText = "시작 금액";
-      document.getElementById("duration_label").innerText = "기간";
-      document.getElementById("profit_rate_label").innerText = "수익률 (%)";
-      document.getElementById("cal_btn").innerText = "계산하기";
-      document.getElementById("total_profit_title").innerText = "총 수익";
-      document.getElementById("total_profit_percentage_title").innerText =
-        "총 수익률";
-      document
-        .querySelector(".amount_input")
-        .setAttribute("placeholder", "금액을 입력하세요.");
-      document
-        .querySelector(".duration_input")
-        .setAttribute("placeholder", "기간을 입력하세요.");
-      document
-        .querySelector(".profit_input")
-        .setAttribute("placeholder", "수익률을 입력하세요.");
-
-      try {
-        document.querySelector(".csv_btn").innerText = "CSV 다운로드";
-        document.querySelector(".duration").innerText = "기간";
-        document.querySelector(".profit").innerText = "수익";
-        document.querySelector(".total").innerText = "총액";
-        document.querySelector(".profit_percent").innerText = "수익률";
-      } catch (error) {}
-      break;
     case "kr":
       document.getElementById("calculation_title").innerText = "복리 계산하기";
       document.getElementById("start_amount_label").innerText = "시작 금액";
