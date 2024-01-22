@@ -1,0 +1,3 @@
+User-agent: *
+Allow:/
+Sitemap: https://bokkli.netlify.app/sitemap.xml
