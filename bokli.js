@@ -9,8 +9,6 @@ const userLang = navigator.language.toLowerCase();
 const langSplit = userLang.substring(userLang.indexOf('-')+1);
 const lang = getSupportedLanguage(langSplit);
 
-console.log(userLang)
-console.log(langSplit)
 const bodyTag = document.body;
 const bodyClassList = bodyTag.classList;
 const logo = document.querySelector(".logo");
@@ -158,7 +156,6 @@ function doCal() {
 
   csvBtn.classList.add("csv_btn");
   // 언어에 따라 csv 버튼의 텍스트 설정
-  console.log(lang);
 
   switch (lang) {
     case 'ko':
@@ -358,7 +355,7 @@ function downloadFile(content, fileName) {
 
 const langSelector = document.querySelector(".set_lang");
 if(langSplit == "ko"){
-  languageSelect.selectedIndex = "0"
+  languageSelect.selectedIndex = "0";
 } else if(langSplit == "en"){
   languageSelect.selectedIndex = "1"
 } else if(langSplit== "zh"){
@@ -380,7 +377,6 @@ languageSelect.addEventListener('change', function() {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log(lang);
 
   // 언어에 따라 title과 콘텐츠 변경
   document.title = getTranslatedTitle(lang);
