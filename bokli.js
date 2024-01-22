@@ -495,7 +495,7 @@ function updateContentByLanguage(lang) {
         .setAttribute("placeholder", "Set your rate of return.");
 
       try {
-        document.querySelector(".csv_btn").innerText = "Download dCSV";
+        document.querySelector(".csv_btn").innerText = "Download CSV";
         document.querySelector(".duration").innerText = "Period";
         document.querySelector(".profit").innerText = "Revenue";
         document.querySelector(".total").innerText = "Total";
@@ -580,6 +580,7 @@ function updateContentByLanguage(lang) {
         .setAttribute("placeholder", "Set your rate of return.");
 
       try {
+        document.querySelector(".csv_btn").innerText = "Download CSV";
         document.querySelector(".duration").innerText = "Period";
         document.querySelector(".profit").innerText = "Revenue";
         document.querySelector(".total").innerText = "Total";
