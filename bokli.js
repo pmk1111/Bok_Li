@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
   Array.from(languageSelect.options).forEach((option) => {
     if (option.selected) {
       selectedLanguage = option.value;
-      console.log(selectedLanguage);
     }
   });
 
@@ -36,7 +35,7 @@ const main = document.querySelector("main")
 const calAreaWrap = document.querySelector(".cal_area");
 
 function goMainPage() {
-  window.location.href = "bokli.html";
+  window.location.href = "https://bokkli.netlify.app/";
 }
 
 // 웹뷰로 사용되는 경우에 userAgent에 앱의 컬러모드 값을 전달받아 사용할 수도 있습니다.
@@ -381,7 +380,6 @@ if(langSplit == "ko"){
 languageSelect.addEventListener('change', function() {
   const selectedLang = languageSelect.value;
   selectedLanguage = selectedLang;
-  console.log(selectedLanguage);
 
   document.title = getTranslatedTitle(selectedLang);
   document.querySelector('meta[name="description"]').setAttribute('content', getTranslatedDescription(selectedLang));
