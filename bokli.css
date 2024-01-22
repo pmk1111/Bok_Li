@@ -166,6 +166,6 @@ tr td:nth-child(1) {
 .utils_wrap {
   display: flex;
   align-items: center;
-  width: 11%;
+  width: 125px;
   justify-content: space-between;
 }
