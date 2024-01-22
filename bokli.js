@@ -5,9 +5,20 @@ if (colorMode) {
 }
 
 const languageSelect = document.querySelector('.set_lang');
+let selectedLanguage = '';
+document.addEventListener('DOMContentLoaded', function() {
+  Array.from(languageSelect.options).forEach((option) => {
+    if (option.selected) {
+      selectedLanguage = option.value;
+      console.log(selectedLanguage);
+    }
+  });
+
+});
+
 const userLang = navigator.language.toLowerCase();
 const langSplit = userLang.substring(userLang.indexOf('-')+1);
-const lang = getSupportedLanguage(langSplit);
+const lang = getSupportedLanguage(selectedLanguage);
 
 const bodyTag = document.body;
 const bodyClassList = bodyTag.classList;
@@ -157,7 +168,7 @@ function doCal() {
   csvBtn.classList.add("csv_btn");
   // 언어에 따라 csv 버튼의 텍스트 설정
 
-  switch (lang) {
+  switch (selectedLanguage) {
     case 'ko':
       csvBtn.textContent = "CSV 다운로드";
       break;
@@ -205,7 +216,7 @@ function doCal() {
   th3.classList.add("total");
   th4.classList.add("profit_percent");
   
-  switch (lang) {
+  switch (selectedLanguage) {
     case 'ko':
       th1.innerText = "기간";
       th2.innerText = "수익";
@@ -368,8 +379,10 @@ if(langSplit == "ko"){
 
 // 언어 설정 시 콘텐츠 언어 변경
 languageSelect.addEventListener('change', function() {
-  const selectedLang= languageSelect.value;
-  
+  const selectedLang = languageSelect.value;
+  selectedLanguage = selectedLang;
+  console.log(selectedLanguage);
+
   document.title = getTranslatedTitle(selectedLang);
   document.querySelector('meta[name="description"]').setAttribute('content', getTranslatedDescription(selectedLang));
   document.querySelector('.title').innerText = getTranslatedTitle(selectedLang);
@@ -379,10 +392,10 @@ languageSelect.addEventListener('change', function() {
 document.addEventListener('DOMContentLoaded', () => {
 
   // 언어에 따라 title과 콘텐츠 변경
-  document.title = getTranslatedTitle(lang);
-  document.querySelector('meta[name="description"]').setAttribute('content', getTranslatedDescription(lang));
-  document.querySelector('.title').innerText = getTranslatedTitle(lang);
-  updateContentByLanguage(lang);
+  document.title = getTranslatedTitle(selectedLanguage);
+  document.querySelector('meta[name="description"]').setAttribute('content', getTranslatedDescription(selectedLanguage));
+  document.querySelector('.title').innerText = getTranslatedTitle(selectedLanguage);
+  updateContentByLanguage(selectedLanguage);
 });
 
 // 지원하는 언어 확인 및 기본값 설정
@@ -440,6 +453,7 @@ function updateContentByLanguage(lang) {
       document.querySelector('.profit_input').setAttribute("placeholder", "수익률을 입력하세요.");
       
       try {
+        document.querySelector(".csv_btn").innerText = "CSV 다운로드";
         document.querySelector('.duration').innerText = '기간';
         document.querySelector('.profit').innerText = '수익';
         document.querySelector('.total').innerText = '총액';
@@ -461,6 +475,7 @@ function updateContentByLanguage(lang) {
       document.querySelector('.profit_input').setAttribute("placeholder", "Set your rate of return.");
 
       try {
+        document.querySelector(".csv_btn").innerText = "Download dCSV";
         document.querySelector('.duration').innerText = 'Period';
         document.querySelector('.profit').innerText = 'Revenue';
         document.querySelector('.total').innerText = 'Total';
@@ -483,6 +498,7 @@ function updateContentByLanguage(lang) {
       document.querySelector('.profit_input').setAttribute("placeholder", "输入您的回报率");
 
       try {
+        document.querySelector(".csv_btn").innerText = "下载CSV";
         document.querySelector('.duration').innerText = '期间';
         document.querySelector('.profit').innerText = '收益';
         document.querySelector('.total').innerText = '总额';
@@ -504,6 +520,7 @@ function updateContentByLanguage(lang) {
       document.querySelector('.profit_input').setAttribute("placeholder", "収益率を入力してください.");
 
       try {
+        document.querySelector(".csv_btn").innerText = "CSV ダウンロード";
         document.querySelector('.duration').innerText = '期間';
         document.querySelector('.profit').innerText = '収益';
         document.querySelector('.total').innerText = '総額';
