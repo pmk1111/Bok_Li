@@ -5,7 +5,6 @@
     <meta name="google-site-verification" content="kW09c0DK4xDTGSGAAOdQK3UgPYERortrtnP8bLnjeZ8" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="간편 복리 계산기: 계산 결과를 csv로 다운로드하세요.">
     <meta name="keywords" content="간편 복리 계산기, 복리 계산, 원리금 복리 계산, 이자 계산, 복리 이자 계산, 장기 투자 계산, 월복리 계산, 연 복리 이자 계산, 수익성 계산, 이율 계산, 투자 수익 계산, 예금 이자 계산,
     Simple Compound Interest Calculator, Compound Interest Calculation, Principal and Interest Compound Calculator, Monthly Compound Interest Calculator, Annual Compound Interest and Interest Calculator, 
     Profitability Calculator, Interest Rate Calculator, Investment Profit Calculator, Deposit Interest Calculator,
@@ -13,6 +12,15 @@
     簡単な複利計算機, 複利計算, 本利複利計算, 利子計算, 複利利子計算, 長期投資計算, 月次複利計算, 年次複利と利子計算, 収益性計算, 利率計算, 投資利益計算, 預金利息計算">
     
     <title>간편 복리계산기</title>
+    <meta name="description" content="간편 복리 계산기: 계산 결과를 csv로 다운로드하세요.">
+
+    <!-- 영어 -->
+    <meta name="description" content="Simple Compound Interest Calculator: Download calculation results as a CSV.">
+    <title>Compound Interest Calculator</title>
+    
+    <!-- 중국어 (간체) -->
+    <meta name="description" content="简易复利计算器：将计算结果下载为CSV。">
+    <title>简易复利计算器</title>
 
     <link rel="icon" href="img/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,7 +32,7 @@
 		<link rel="stylesheet" href="bokli.css">
     
   </head>
-  <body class="dark">
+  <body id="web_content" class="dark">
     <header>
       <nav class="nav_bar">
         <div class="nav_container">
@@ -38,6 +46,14 @@
             <div class="dark_mode_btn" onclick="setTheme()">
               <img class="set_theme_img" src="img/moon.png" />
             </div>
+            <div class="set_lang_wrap">
+              <select class="set_lang">
+                <option value="ko">한국어</option>
+                <option value="en">English</option>
+                <option value="zh">中国語</option>
+                <option value="ja">日本語</option>
+              </select>
+            </div>
           </div>
         </div>
       </nav>
@@ -46,9 +62,9 @@
       <div class="main_wrap">
         <div class="cal_area">
           <div class="inner_container cal_area_wrap">
-            <h1 style="font-size: 40px; padding-bottom: 20px">복리 계산하기</h1>
+            <h1 id="calculation_title" style="font-size: 40px; padding-bottom: 20px">복리 계산하기</h1>
             <div class="inner_container_wrap">
-              <h3>시작 금액</h3>
+              <h3 id="start_amount_label">시작 금액</h3>
               <input
                 type="text"
                 class="amount_input"
@@ -57,7 +73,7 @@
               />
             </div>
             <div class="inner_container_wrap">
-              <h3>기간</h3>
+              <h3 id="duration_label">기간</h3>
               <input
                 type="text"
                 class="duration_input"
@@ -66,7 +82,7 @@
               />
             </div>
             <div class="inner_container_wrap">
-              <h3>수익률 (%)</h3>
+              <h3 id="profit_rate_label">수익률 (%)</h3>
               <input
                 type="text"
                 class="profit_input"
@@ -85,13 +101,13 @@
             <div class="total_area">
               <div class="total_profit">
 								<div class="flex_center">
-                	<h2>총 수익</h2>
+                	<h2 id="total_profit_title">총 수익</h2>
 									<p class="color_green"></h2>
 								</div>
               </div>
-              <div class="total_profit_persentage">
+              <div class="total_profit_percentage">
 								<div class="flex_center">
-                	<h2>총 수익률</h2>
+                	<h2 id="total_profit_percentage_title">총 수익률</h2>
 									<p class="color_green"></p>
 								</div>
               </div>
