@@ -17,12 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-console.log(languageSelect);
-console.log(userLang);
-console.log(langSplit);
-console.log(lang);
-console.log(selectedLanguage);
-
 const bodyTag = document.body;
 const bodyClassList = bodyTag.classList;
 const logo = document.querySelector(".logo");
@@ -175,6 +169,7 @@ function doCal() {
     case "ko":
     case "kr":
       csvBtn.textContent = "CSV 다운로드";
+      break;
     case "en":
       csvBtn.textContent = "Download CSV";
       break;
@@ -385,12 +380,6 @@ if (langSplit == "ko" || langSplit == "kr") {
 languageSelect.addEventListener("change", function () {
   const selectedLang = languageSelect.value;
   selectedLanguage = selectedLang;
-
-  console.log(languageSelect);
-  console.log(userLang);
-  console.log(langSplit);
-  console.log(lang);
-  console.log(selectedLanguage);
 
   document.title = getTranslatedTitle(selectedLang);
   document
