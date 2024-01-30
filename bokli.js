@@ -1,8 +1,5 @@
-// localStorage에 저장된 값을 컬러모드로 사용할 수 있습니다.
-const colorMode = window.localStorage.getItem("color_mode");
-if (colorMode) {
-  window.document.body.classList.add(colorMode);
-}
+const bodyTag = document.body;
+const bodyClassList = bodyTag.classList;
 
 const languageSelect = document.querySelector(".set_lang");
 const userLang = navigator.language.toLowerCase();
@@ -17,107 +14,110 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-const bodyTag = document.body;
-const bodyClassList = bodyTag.classList;
+const body = document.querySelector("body");
+const nav = document.querySelector("nav");
+
+// const bodyClassList = bodyTag.classList;
 const logo = document.querySelector(".logo");
-const themeBtn = document.querySelector(".dark_mode_btn");
+
+const toggleList = document.querySelectorAll(".toggleSwitch");
+const toggleImg = document.querySelector(".display_mode_icon");
+
+const menuBtn = document.querySelector(".menu_btn");
+const menu = document.querySelector(".menu");
+
+const setLang = document.querySelector(".set_lang");
 
 const totalProfit = document.querySelector(".total_profit p");
 const totalProfitPercent = document.querySelector(".total_profit_percentage p");
 
+const calArea = document.querySelector(".cal_area");
+
 const inputs = document.getElementsByTagName("input");
 const calBtn = document.querySelector(".do_cal_btn");
+
+const htu = document.querySelector(".how_to_use");
+const htuH3 = document.querySelector(".htu_h3");
 
 const navBar = document.querySelector(".nav_bar");
 const main = document.querySelector("main");
 const calAreaWrap = document.querySelector(".cal_area");
 
+const footer = document.querySelector("footer");
+
 function goMainPage() {
   window.location.href = "https://bokkli.netlify.app/";
 }
 
-// 웹뷰로 사용되는 경우에 userAgent에 앱의 컬러모드 값을 전달받아 사용할 수도 있습니다.
-// 이 경우 웹뷰가 열릴 때 앱팀의 지원을 받아 변경된 UA값을 전달 해 줘야 합니다
-const isDarkMode = window.navigator.userAgent.includes("{isDark property}");
-if (isDarkMode) {
-  window.document.body.classList.add("dark");
-}
+var isActive = true;
+// 다크모드
+toggleList.forEach(($toggle) => {
+  $toggle.onclick = () => {
+    const table = document.querySelector("table");
+    const tr = table.querySelectorAll(".profit_detail_table tr");
+    isActive = $toggle.classList.contains("active");
 
-// 앞서 사용한 prefers-color-scheme 값을 확인 해 시스템의 컬러모드 초기값으로 사용할 수도 있습니다.
-if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  window.document.body.classList.add("dark");
-}
+    if (isActive) {
+      $toggle.classList.remove("active");
+      toggleImg.setAttribute("src", "images/sun.png");
+      body.classList.remove("dark");
+      body.classList.add("lite");
 
-// css media query 동작과 유사하게, 시스템의 컬러모드가 변경될 때 마다 이를 웹에 반영해 줄 수도 있습니다.
-const mediaQueryList = window.matchMedia("(prefers-color-scheme: dark)");
-mediaQueryList.addEventListener("change", (e) => {
-  if (e.matches) {
-    window.document.body.classList.add("dark");
-  } else {
-    window.document.body.classList.remove("dark");
-  }
+      nav.classList.remove("nav_dark");
+      menuBtn.classList.remove("menu_btn_dark");
+      menu.classList.remove("menu_dark");
+
+      setLang.classList.remove("set_lang_dark");
+      
+      for(item of tr){
+        item.classList.remove("tr_dark");
+      }
+
+      calArea.classList.remove("cal_area_dark");
+      for(item of inputs){
+        item.classList.remove("input_dark");
+      }
+      calBtn.classList.remove("cal_btn_dark");
+
+      htu.classList.remove("htu_dark");
+      htuH3.classList.remove("htu_h3_dark");
+
+      footer.classList.remove("footer_dark");
+    } else {
+      $toggle.classList.add("active");
+      toggleImg.setAttribute("src", "images/moon.png");
+      body.classList.remove("lite");
+      body.classList.add("dark");
+
+      nav.classList.add("nav_dark");
+      menuBtn.classList.add("menu_btn_dark");
+      menu.classList.add("menu_dark");
+      
+      setLang.classList.add("set_lang_dark");
+
+      for(item of tr){
+        item.classList.add("tr_dark");
+      }
+
+      calArea.classList.add("cal_area_dark");
+      for(item of inputs){
+        item.classList.add("input_dark");
+      }
+      calBtn.classList.add("cal_btn_dark");
+
+      htu.classList.add("htu_dark");
+      htuH3.classList.add("htu_h3_dark");
+
+      footer.classList.add("footer_dark");
+    }
+  };
 });
 
-function setTheme() {
-  let table = document.querySelector(".profit_detail_table");
-  let rows = table.querySelectorAll("tr");
 
-  if (bodyClassList.contains("dark")) {
-    // 다크 모드일 경우, 다크 모드 클래스 제거
-    bodyClassList.remove("dark");
-    // localStorage에 상태 저장
-    window.localStorage.setItem("color_mode", "");
-    logo.src = "img/m.lab.png";
-    themeBtn.querySelector(".set_theme_img").src = "img/sun.png";
 
-    for (let i = 0; i < inputs.length; i++) {
-      inputs[i].style.backgroundColor = "white";
-      inputs[i].style.color = "#212529";
-    }
 
-    navBar.style.borderBottom = "1px solid #aaaaaa";
-    main.style.backgroundColor = "lightgrey";
-    calAreaWrap.style.backgroundColor = "white";
-    calAreaWrap.style.borderColor = "#aaaaaa";
-    calBtn.style.backgroundColor = "#52bcfd";
-    calBtn.style.color = "white";
 
-    rows.forEach((row, index) => {
-      if (index % 2 == 1) {
-        row.style.backgroundColor = "lightgrey";
-      } else {
-        row.style.backgroundColor = "white";
-      }
-    });
-  } else {
-    // 다크 모드가 아닐 경우, 다크 모드 클래스추가
-    bodyClassList.add("dark");
-    // localStorage에 상태 저장
-    window.localStorage.setItem("color_mode", "dark");
-    logo.src = "img/m.lab_dark.png";
-    themeBtn.querySelector(".set_theme_img").src = "img/moon.png";
 
-    for (let i = 0; i < inputs.length; i++) {
-      inputs[i].style.backgroundColor = "#212529";
-      inputs[i].style.color = "white";
-    }
-
-    navBar.style.borderBottom = "1px solid #4f4f4f";
-    main.style.backgroundColor = "#151515";
-    calAreaWrap.style.backgroundColor = "#151515";
-    calAreaWrap.style.borderColor = "#4f4f4f";
-    calBtn.style.backgroundColor = "#212529";
-    calBtn.style.color = "white";
-
-    rows.forEach((row, index) => {
-      if (index % 2 == 1) {
-        row.style.backgroundColor = "#383e45";
-      } else {
-        row.style.backgroundColor = "#212529";
-      }
-    });
-  }
-}
 
 function validateNumberInput(inputElement) {
   // 현재 입력된 값 가져오기
@@ -155,6 +155,11 @@ function doCal() {
   const csvBtnWrap = document.createElement("div");
   csvBtnWrap.classList.add("inner_container_wrap", "csv_btn_wrap");
 
+  const existCsvBtn = document.querySelector(".csv_btn");
+
+  if(existCsvBtn){
+    existCsvBtn.remove();
+  }
   const csvBtn = document.createElement("button");
   csvBtn.classList.add("csv_btn");
   csvBtn.type = "button";
@@ -247,9 +252,6 @@ function doCal() {
       th4.innerText = "Return";
   }
 
-  if (!bodyClassList.contains("dark")) {
-    firstTr.style.backgroundColor = "white";
-  }
 
   firstTr.append(th1);
   firstTr.append(th2);
@@ -316,15 +318,6 @@ function doCal() {
 
   let rows = profitTable.querySelectorAll("tr");
 
-  if (!bodyClassList.contains("dark")) {
-    rows.forEach((row, index) => {
-      if (index % 2 == 1) {
-        row.style.backgroundColor = "lightgrey";
-      } else {
-        row.style.backgroundColor = "white";
-      }
-    });
-  }
 }
 
 function downloadCSV() {
@@ -588,3 +581,87 @@ function updateContentByLanguage(lang) {
       } catch (error) {}
   }
 }
+
+
+
+
+// common js
+var isMenuOpened = false;
+var isContentOpened = false;
+var browserWidth = window.innerWidth;
+let contentType = document.querySelectorAll(".content_type");
+
+document.addEventListener("DOMContentLoaded", function () {
+  let menuBtn = document.querySelector(".menu_btn");
+
+  menuBtn.addEventListener("click", function () {
+    let menu = document.querySelector(".menu");
+    slideToggle(menu);
+  });
+
+  contentType.forEach(function(item) {
+    item.addEventListener("click", function() {
+      let list = item.parentNode.querySelector(".content_list");
+      slideList(list);
+    });
+  });
+
+});
+
+function slideToggle(menu) {
+  if (isMenuOpened) {
+    menu.classList.remove("open");
+    isMenuOpened = false;
+  } else {
+    menu.classList.add("open");
+    isMenuOpened = true;
+  }
+}
+
+function slideList(list){
+  let span = list.parentNode.querySelector("span");
+  if(isContentOpened){
+    list.classList.remove("content_open");
+    isContentOpened = false;
+    if (window.innerWidth <= 768) {
+      span.textContent = "↓";   
+    }
+  } else{
+    list.classList.add("content_open");
+    isContentOpened = true;
+    if (window.innerWidth <= 768) {
+      span.textContent = "↑";   
+    }
+  }
+
+}
+
+// browserWidth 변화에 따른 content arrow 추가 및 제거
+function handleResize() {
+    let isSpan = document.querySelector(".arrow");
+    if (window.innerWidth <= 768) {
+      contentType.forEach(function(item) {
+        if(!isSpan){
+          let arrow = document.createElement("span");
+          arrow.classList.add("arrow")
+          arrow.style.float = "right"
+          arrow.style.paddingRight = "3px"
+          arrow.textContent = "↓";   
+          item.appendChild(arrow);
+        }
+      });
+    } else{
+      if(isSpan){
+        contentType.forEach(function(item) {
+          let arrow = item.querySelector(".arrow");
+          item.removeChild(arrow);
+        });
+      }
+    }
+  }
+  
+    // 초기 로딩 시에도 한 번 실행
+    handleResize();
+    
+    // 브라우저 크기가 변할 때마다 실행
+    window.addEventListener("resize", handleResize);
