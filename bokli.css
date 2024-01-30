@@ -504,17 +504,22 @@ tr td:nth-child(1) {
 }
 .htu_h3{
   background: #609FD6;
+  text-align: center;
   padding: 10px;
   color: white;
   transition: all 0.2s ease-in;
 }
 .htu_h3.htu_h3_dark{
   background-color: #3a3a3a;
+  color: rgb(166, 166, 166);
   transition: all 0.2s ease-in;
 }
 .step{
   padding: 10px;
+  transition: all 0.2s ease-in;
 }
 .step p{
-  margin: 5px 0;
+  margin: 10px 0;
+  transition: all 0.2s ease-in;
 }
+
