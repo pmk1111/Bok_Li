@@ -1,19 +1,3 @@
-// const bodyTag = document.body;
-// const bodyClassList = bodyTag.classList;
-
-// const languageSelect = document.querySelector(".set_lang");
-// const userLang = navigator.language.toLowerCase();
-// const langSplit = userLang.substring(userLang.indexOf("-") + 1);
-// const lang = getSupportedLanguage(langSplit);
-// let selectedLanguage = lang;
-// document.addEventListener("DOMContentLoaded", function () {
-//   Array.from(languageSelect.options).forEach((option) => {
-//     if (option.selected) {
-//       selectedLanguage = option.value;
-//     }
-//   });
-// });
-
 const body = document.querySelector("body");
 const nav = document.querySelector("nav");
 
@@ -36,8 +20,9 @@ const calArea = document.querySelector(".cal_area");
 const inputs = document.getElementsByTagName("input");
 const calBtn = document.querySelector(".do_cal_btn");
 
-const htu = document.querySelector(".how_to_use");
-const htuH3 = document.querySelector(".htu_h3");
+const htu = document.querySelectorAll(".how_to_use");
+const htuH3 = document.querySelectorAll(".htu_h3");
+const step = document.querySelectorAll(".step");
 
 const navBar = document.querySelector(".nav_bar");
 const main = document.querySelector("main");
@@ -66,6 +51,8 @@ toggleList.forEach(($toggle) => {
       body.classList.add("lite");
 
       nav.classList.remove("nav_dark");
+      main.classList.remove("main_dark");
+
       menuBtn.classList.remove("menu_btn_dark");
       menu.classList.remove("menu_dark");
       for(item of menuLink){
@@ -84,8 +71,11 @@ toggleList.forEach(($toggle) => {
       }
       calBtn.classList.remove("cal_btn_dark");
 
-      htu.classList.remove("htu_dark");
-      htuH3.classList.remove("htu_h3_dark");
+      for(let i=0;i<2;i++){
+        htu[i].classList.remove("htu_dark");
+        htuH3[i].classList.remove("htu_h3_dark");
+        step[i].classList.remove("step_dark");
+      }
 
       footer.classList.remove("footer_dark");
     } else {
@@ -95,6 +85,8 @@ toggleList.forEach(($toggle) => {
       body.classList.add("dark");
 
       nav.classList.add("nav_dark");
+      main.classList.add("main_dark");
+
       menuBtn.classList.add("menu_btn_dark");
       menu.classList.add("menu_dark");
       for(item of menuLink){
@@ -113,8 +105,11 @@ toggleList.forEach(($toggle) => {
       }
       calBtn.classList.add("cal_btn_dark");
 
-      htu.classList.add("htu_dark");
-      htuH3.classList.add("htu_h3_dark");
+      for(let i=0;i<2;i++){
+        htu[i].classList.add("htu_dark");
+        htuH3[i].classList.add("htu_h3_dark");
+        step[i].classList.add("step_dark");
+      }
 
       footer.classList.add("footer_dark");
     }
@@ -176,6 +171,7 @@ function doCal() {
   });
 
   csvBtn.classList.add("csv_btn");
+  csvBtn.textContent = "CSV로 다운로드"
   // 언어에 따라 csv 버튼의 텍스트 설정
 
   // switch (selectedLanguage) {

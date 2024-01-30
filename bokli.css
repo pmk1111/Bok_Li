@@ -353,6 +353,10 @@ input.input_dark {
 main {
   width: 100%;
   padding: 40px 0;
+  background: lightgrey;
+}
+main.main_dark{
+  background-color: #151515;
 }
 .main_wrap {
   display: flex;
@@ -367,6 +371,7 @@ main {
   width: 600px;
   border-radius: 5px;
   transition: all 0.2s ease-in;
+  background-color: white;
 }
 .cal_area.cal_area_dark{
   background-color: #3a3a3a;
@@ -494,7 +499,6 @@ tr td:nth-child(1) {
 .how_to_use{
   margin-top: 40px;
   width: 600px;
-  border: 1px solid #609FD6;
   border-radius: 3px;
   transition: all 0.2s ease-in;
 }
@@ -503,6 +507,8 @@ tr td:nth-child(1) {
   transition: all 0.2s ease-in;
 }
 .htu_h3{
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
   background: #609FD6;
   text-align: center;
   padding: 10px;
@@ -515,7 +521,13 @@ tr td:nth-child(1) {
   transition: all 0.2s ease-in;
 }
 .step{
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
   padding: 10px;
+  background-color: white;
+}
+.step.step_dark{
+  background-color: #151515;
 }
 .step p{
   margin: 10px 0;
