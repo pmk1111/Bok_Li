@@ -516,10 +516,8 @@ tr td:nth-child(1) {
 }
 .step{
   padding: 10px;
-  transition: all 0.2s ease-in;
 }
 .step p{
   margin: 10px 0;
-  transition: all 0.2s ease-in;
 }
 
