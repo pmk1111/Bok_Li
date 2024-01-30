@@ -1,18 +1,18 @@
-const bodyTag = document.body;
-const bodyClassList = bodyTag.classList;
+// const bodyTag = document.body;
+// const bodyClassList = bodyTag.classList;
 
-const languageSelect = document.querySelector(".set_lang");
-const userLang = navigator.language.toLowerCase();
-const langSplit = userLang.substring(userLang.indexOf("-") + 1);
-const lang = getSupportedLanguage(langSplit);
-let selectedLanguage = lang;
-document.addEventListener("DOMContentLoaded", function () {
-  Array.from(languageSelect.options).forEach((option) => {
-    if (option.selected) {
-      selectedLanguage = option.value;
-    }
-  });
-});
+// const languageSelect = document.querySelector(".set_lang");
+// const userLang = navigator.language.toLowerCase();
+// const langSplit = userLang.substring(userLang.indexOf("-") + 1);
+// const lang = getSupportedLanguage(langSplit);
+// let selectedLanguage = lang;
+// document.addEventListener("DOMContentLoaded", function () {
+//   Array.from(languageSelect.options).forEach((option) => {
+//     if (option.selected) {
+//       selectedLanguage = option.value;
+//     }
+//   });
+// });
 
 const body = document.querySelector("body");
 const nav = document.querySelector("nav");
@@ -43,6 +43,8 @@ const navBar = document.querySelector(".nav_bar");
 const main = document.querySelector("main");
 const calAreaWrap = document.querySelector(".cal_area");
 
+const menuLink = document.querySelectorAll(".menu_container a");
+
 const footer = document.querySelector("footer");
 
 function goMainPage() {
@@ -66,8 +68,11 @@ toggleList.forEach(($toggle) => {
       nav.classList.remove("nav_dark");
       menuBtn.classList.remove("menu_btn_dark");
       menu.classList.remove("menu_dark");
+      for(item of menuLink){
+        item.classList.remove("link_dark");
+      }
 
-      setLang.classList.remove("set_lang_dark");
+      // setLang.classList.remove("set_lang_dark");
       
       for(item of tr){
         item.classList.remove("tr_dark");
@@ -92,8 +97,11 @@ toggleList.forEach(($toggle) => {
       nav.classList.add("nav_dark");
       menuBtn.classList.add("menu_btn_dark");
       menu.classList.add("menu_dark");
+      for(item of menuLink){
+        item.classList.add("link_dark");
+      }
       
-      setLang.classList.add("set_lang_dark");
+      // setLang.classList.add("set_lang_dark");
 
       for(item of tr){
         item.classList.add("tr_dark");
@@ -170,23 +178,23 @@ function doCal() {
   csvBtn.classList.add("csv_btn");
   // 언어에 따라 csv 버튼의 텍스트 설정
 
-  switch (selectedLanguage) {
-    case "ko":
-    case "kr":
-      csvBtn.textContent = "CSV 다운로드";
-      break;
-    case "en":
-      csvBtn.textContent = "Download CSV";
-      break;
-    case "zh":
-      csvBtn.textContent = "下载CSV";
-      break;
-    case "ja":
-      csvBtn.textContent = "CSV ダウンロード";
-      break;
-    default:
-      csvBtn.textContent = "Download CSV";
-  }
+  // switch (selectedLanguage) {
+  //   case "ko":
+  //   case "kr":
+  //     csvBtn.textContent = "CSV 다운로드";
+  //     break;
+  //   case "en":
+  //     csvBtn.textContent = "Download CSV";
+  //     break;
+  //   case "zh":
+  //     csvBtn.textContent = "下载CSV";
+  //     break;
+  //   case "ja":
+  //     csvBtn.textContent = "CSV ダウンロード";
+  //     break;
+  //   default:
+  //     csvBtn.textContent = "Download CSV";
+  // }
 
   csvBtnWrap.appendChild(csvBtn);
   calArea.insertBefore(csvBtnWrap, calBtnWrap.nextSibling);
@@ -219,38 +227,38 @@ function doCal() {
   th3.classList.add("total");
   th4.classList.add("profit_percent");
 
-  switch (selectedLanguage) {
-    case "ko":
-    case "kr":
-      th1.innerText = "기간";
-      th2.innerText = "수익";
-      th3.innerText = "총액";
-      th4.innerText = "수익률";
-      break;
-    case "en":
-      th1.innerText = "Period";
-      th2.innerText = "Revenue";
-      th3.innerText = "Total";
-      th4.innerText = "Return";
-      break;
-    case "zh":
-      th1.innerText = "期间";
-      th2.innerText = "收益";
-      th3.innerText = "总额";
-      th4.innerText = "收益率";
-      break;
-    case "ja":
-      th1.innerText = "期間";
-      th2.innerText = "収益";
-      th3.innerText = "総額";
-      th4.innerText = "収益率";
-      break;
-    default:
-      th1.innerText = "Period";
-      th2.innerText = "Revenue";
-      th3.innerText = "Total";
-      th4.innerText = "Return";
-  }
+  // switch (selectedLanguage) {
+  //   case "ko":
+  //   case "kr":
+  //     th1.innerText = "기간";
+  //     th2.innerText = "수익";
+  //     th3.innerText = "총액";
+  //     th4.innerText = "수익률";
+  //     break;
+  //   case "en":
+  //     th1.innerText = "Period";
+  //     th2.innerText = "Revenue";
+  //     th3.innerText = "Total";
+  //     th4.innerText = "Return";
+  //     break;
+  //   case "zh":
+  //     th1.innerText = "期间";
+  //     th2.innerText = "收益";
+  //     th3.innerText = "总额";
+  //     th4.innerText = "收益率";
+  //     break;
+  //   case "ja":
+  //     th1.innerText = "期間";
+  //     th2.innerText = "収益";
+  //     th3.innerText = "総額";
+  //     th4.innerText = "収益率";
+  //     break;
+  //   default:
+  //     th1.innerText = "Period";
+  //     th2.innerText = "Revenue";
+  //     th3.innerText = "Total";
+  //     th4.innerText = "Return";
+  // }
 
 
   firstTr.append(th1);
@@ -356,231 +364,231 @@ function downloadFile(content, fileName) {
   link.click();
 }
 
-const langSelector = document.querySelector(".set_lang");
-if (langSplit == "ko" || langSplit == "kr") {
-  languageSelect.selectedIndex = "0";
-} else if (langSplit == "en") {
-  languageSelect.selectedIndex = "1";
-} else if (langSplit == "zh") {
-  languageSelect.selectedIndex = "2";
-} else if (langSplit == "ja") {
-  languageSelect.selectedIndex = "3";
-} else {
-  languageSelect.selectedIndex = "1";
-}
+// const langSelector = document.querySelector(".set_lang");
+// if (langSplit == "ko" || langSplit == "kr") {
+//   languageSelect.selectedIndex = "0";
+// } else if (langSplit == "en") {
+//   languageSelect.selectedIndex = "1";
+// } else if (langSplit == "zh") {
+//   languageSelect.selectedIndex = "2";
+// } else if (langSplit == "ja") {
+//   languageSelect.selectedIndex = "3";
+// } else {
+//   languageSelect.selectedIndex = "1";
+// }
 
 // 언어 설정 시 콘텐츠 언어 변경
-languageSelect.addEventListener("change", function () {
-  const selectedLang = languageSelect.value;
-  selectedLanguage = selectedLang;
+// languageSelect.addEventListener("change", function () {
+//   const selectedLang = languageSelect.value;
+//   selectedLanguage = selectedLang;
 
-  document.title = getTranslatedTitle(selectedLang);
-  document
-    .querySelector('meta[name="description"]')
-    .setAttribute("content", getTranslatedDescription(selectedLang));
-  document.querySelector(".title").innerText = getTranslatedTitle(selectedLang);
-  updateContentByLanguage(selectedLang);
-});
+//   document.title = getTranslatedTitle(selectedLang);
+//   document
+//     .querySelector('meta[name="description"]')
+//     .setAttribute("content", getTranslatedDescription(selectedLang));
+//   document.querySelector(".title").innerText = getTranslatedTitle(selectedLang);
+//   updateContentByLanguage(selectedLang);
+// });
 
-document.addEventListener("DOMContentLoaded", () => {
-  // 언어에 따라 title과 콘텐츠 변경
-  document.title = getTranslatedTitle(selectedLanguage);
-  document
-    .querySelector('meta[name="description"]')
-    .setAttribute("content", getTranslatedDescription(selectedLanguage));
-  document.querySelector(".title").innerText =
-    getTranslatedTitle(selectedLanguage);
-  updateContentByLanguage(selectedLanguage);
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   // 언어에 따라 title과 콘텐츠 변경
+//   document.title = getTranslatedTitle(selectedLanguage);
+//   document
+//     .querySelector('meta[name="description"]')
+//     .setAttribute("content", getTranslatedDescription(selectedLanguage));
+//   document.querySelector(".title").innerText =
+//     getTranslatedTitle(selectedLanguage);
+//   updateContentByLanguage(selectedLanguage);
+// });
 
 // 지원하는 언어 확인 및 기본값 설정
-function getSupportedLanguage(lang) {
-  const supportedLanguages = ["ko", "en", "zh", "ja"];
-  return supportedLanguages.includes(lang) ? lang : "en";
-}
+// function getSupportedLanguage(lang) {
+//   const supportedLanguages = ["ko", "en", "zh", "ja"];
+//   return supportedLanguages.includes(lang) ? lang : "en";
+// }
 
-// 언어에 따른 title 반환
-function getTranslatedTitle(lang) {
-  switch (lang) {
-    case "ko":
-    case "kr":
-      return "간편 복리계산기";
-    case "en":
-      return "Compound Interest Calculator";
-    case "zh":
-      return "简易复利计算器";
-    case "ja":
-      return "簡単な複利計算機";
-    default:
-      return "Compound Interest Calculator";
-  }
-}
+// // 언어에 따른 title 반환
+// function getTranslatedTitle(lang) {
+//   switch (lang) {
+//     case "ko":
+//     case "kr":
+//       return "간편 복리계산기";
+//     case "en":
+//       return "Compound Interest Calculator";
+//     case "zh":
+//       return "简易复利计算器";
+//     case "ja":
+//       return "簡単な複利計算機";
+//     default:
+//       return "Compound Interest Calculator";
+//   }
+// }
 
-// 언어에 따른 description 반환
-function getTranslatedDescription(lang) {
-  switch (lang) {
-    case "ko":
-    case "kr":
-      return "간편 복리 계산기: 계산 결과를 csv로 다운로드하세요.";
-    case "en":
-      return "Simple Compound Interest Calculator: Download calculation results as a CSV.";
-    case "zh":
-      return "简易复利计算器：将计算结果下载为CSV。";
-    case "ja":
-      return "簡単な複利計算機：計算結果をCSVでダウンロードします。";
-    default:
-      return "Simple Compound Interest Calculator: Download calculation results as a CSV.";
-  }
-}
+// // 언어에 따른 description 반환
+// function getTranslatedDescription(lang) {
+//   switch (lang) {
+//     case "ko":
+//     case "kr":
+//       return "간편 복리 계산기: 계산 결과를 csv로 다운로드하세요.";
+//     case "en":
+//       return "Simple Compound Interest Calculator: Download calculation results as a CSV.";
+//     case "zh":
+//       return "简易复利计算器：将计算结果下载为CSV。";
+//     case "ja":
+//       return "簡単な複利計算機：計算結果をCSVでダウンロードします。";
+//     default:
+//       return "Simple Compound Interest Calculator: Download calculation results as a CSV.";
+//   }
+// }
 
-// 언어에 따라 본문 내용 변경
-function updateContentByLanguage(lang) {
-  // 사용자 언어에 따라 다른 텍스트로 변경
-  switch (lang) {
-    case "ko":
-    case "kr":
-      document.getElementById("calculation_title").innerText = "복리 계산하기";
-      document.getElementById("start_amount_label").innerText = "시작 금액";
-      document.getElementById("duration_label").innerText = "기간";
-      document.getElementById("profit_rate_label").innerText = "수익률 (%)";
-      document.getElementById("cal_btn").innerText = "계산하기";
-      document.getElementById("total_profit_title").innerText = "총 수익";
-      document.getElementById("total_profit_percentage_title").innerText =
-        "총 수익률";
-      document
-        .querySelector(".amount_input")
-        .setAttribute("placeholder", "금액을 입력하세요.");
-      document
-        .querySelector(".duration_input")
-        .setAttribute("placeholder", "기간을 입력하세요.");
-      document
-        .querySelector(".profit_input")
-        .setAttribute("placeholder", "수익률을 입력하세요.");
+// // 언어에 따라 본문 내용 변경
+// function updateContentByLanguage(lang) {
+//   // 사용자 언어에 따라 다른 텍스트로 변경
+//   switch (lang) {
+//     case "ko":
+//     case "kr":
+//       document.getElementById("calculation_title").innerText = "복리 계산하기";
+//       document.getElementById("start_amount_label").innerText = "시작 금액";
+//       document.getElementById("duration_label").innerText = "기간";
+//       document.getElementById("profit_rate_label").innerText = "수익률 (%)";
+//       document.getElementById("cal_btn").innerText = "계산하기";
+//       document.getElementById("total_profit_title").innerText = "총 수익";
+//       document.getElementById("total_profit_percentage_title").innerText =
+//         "총 수익률";
+//       document
+//         .querySelector(".amount_input")
+//         .setAttribute("placeholder", "금액을 입력하세요.");
+//       document
+//         .querySelector(".duration_input")
+//         .setAttribute("placeholder", "기간을 입력하세요.");
+//       document
+//         .querySelector(".profit_input")
+//         .setAttribute("placeholder", "수익률을 입력하세요.");
 
-      try {
-        document.querySelector(".csv_btn").innerText = "CSV 다운로드";
-        document.querySelector(".duration").innerText = "기간";
-        document.querySelector(".profit").innerText = "수익";
-        document.querySelector(".total").innerText = "총액";
-        document.querySelector(".profit_percent").innerText = "수익률";
-      } catch (error) {}
-      break;
-    case "en":
-      document.getElementById("calculation_title").innerText =
-        "Calculate Compound Interest";
-      document.getElementById("start_amount_label").innerText =
-        "Starting Amount";
-      document.getElementById("duration_label").innerText = "Duration";
-      document.getElementById("profit_rate_label").innerText =
-        "Profit Rate (%)";
-      document.getElementById("cal_btn").innerText = "Calculate";
-      document.getElementById("total_profit_title").innerText = "Total Profit";
-      document.getElementById("total_profit_percentage_title").innerText =
-        "Total Profit Percentage";
-      document
-        .querySelector(".amount_input")
-        .setAttribute("placeholder", "Set the amount.");
-      document
-        .querySelector(".duration_input")
-        .setAttribute("placeholder", "Set a period");
-      document
-        .querySelector(".profit_input")
-        .setAttribute("placeholder", "Set your rate of return.");
+//       try {
+//         document.querySelector(".csv_btn").innerText = "CSV 다운로드";
+//         document.querySelector(".duration").innerText = "기간";
+//         document.querySelector(".profit").innerText = "수익";
+//         document.querySelector(".total").innerText = "총액";
+//         document.querySelector(".profit_percent").innerText = "수익률";
+//       } catch (error) {}
+//       break;
+//     case "en":
+//       document.getElementById("calculation_title").innerText =
+//         "Calculate Compound Interest";
+//       document.getElementById("start_amount_label").innerText =
+//         "Starting Amount";
+//       document.getElementById("duration_label").innerText = "Duration";
+//       document.getElementById("profit_rate_label").innerText =
+//         "Profit Rate (%)";
+//       document.getElementById("cal_btn").innerText = "Calculate";
+//       document.getElementById("total_profit_title").innerText = "Total Profit";
+//       document.getElementById("total_profit_percentage_title").innerText =
+//         "Total Profit Percentage";
+//       document
+//         .querySelector(".amount_input")
+//         .setAttribute("placeholder", "Set the amount.");
+//       document
+//         .querySelector(".duration_input")
+//         .setAttribute("placeholder", "Set a period");
+//       document
+//         .querySelector(".profit_input")
+//         .setAttribute("placeholder", "Set your rate of return.");
 
-      try {
-        document.querySelector(".csv_btn").innerText = "Download CSV";
-        document.querySelector(".duration").innerText = "Period";
-        document.querySelector(".profit").innerText = "Revenue";
-        document.querySelector(".total").innerText = "Total";
-        document.querySelector(".profit_percent").innerText = "Return";
-      } catch (error) {}
-      break;
-    case "zh":
-      document.getElementById("calculation_title").innerText = "复利计算";
-      document.getElementById("start_amount_label").innerText = "开始金额";
-      document.getElementById("duration_label").innerText = "期限";
-      document.getElementById("profit_rate_label").innerText = "收益率 (%)";
-      document.getElementById("cal_btn").innerText = "计算";
-      document.getElementById("total_profit_title").innerText = "总利润";
-      document.getElementById("total_profit_percentage_title").innerText =
-        "总利润百分比";
-      document
-        .querySelector(".amount_input")
-        .setAttribute("placeholder", "请输入金额");
-      document
-        .querySelector(".duration_input")
-        .setAttribute("placeholder", "设定持续时间");
-      document
-        .querySelector(".profit_input")
-        .setAttribute("placeholder", "输入您的回报率");
+//       try {
+//         document.querySelector(".csv_btn").innerText = "Download CSV";
+//         document.querySelector(".duration").innerText = "Period";
+//         document.querySelector(".profit").innerText = "Revenue";
+//         document.querySelector(".total").innerText = "Total";
+//         document.querySelector(".profit_percent").innerText = "Return";
+//       } catch (error) {}
+//       break;
+//     case "zh":
+//       document.getElementById("calculation_title").innerText = "复利计算";
+//       document.getElementById("start_amount_label").innerText = "开始金额";
+//       document.getElementById("duration_label").innerText = "期限";
+//       document.getElementById("profit_rate_label").innerText = "收益率 (%)";
+//       document.getElementById("cal_btn").innerText = "计算";
+//       document.getElementById("total_profit_title").innerText = "总利润";
+//       document.getElementById("total_profit_percentage_title").innerText =
+//         "总利润百分比";
+//       document
+//         .querySelector(".amount_input")
+//         .setAttribute("placeholder", "请输入金额");
+//       document
+//         .querySelector(".duration_input")
+//         .setAttribute("placeholder", "设定持续时间");
+//       document
+//         .querySelector(".profit_input")
+//         .setAttribute("placeholder", "输入您的回报率");
 
-      try {
-        document.querySelector(".csv_btn").innerText = "下载CSV";
-        document.querySelector(".duration").innerText = "期间";
-        document.querySelector(".profit").innerText = "收益";
-        document.querySelector(".total").innerText = "总额";
-        document.querySelector(".profit_percent").innerText = "收益率";
-      } catch (error) {}
-      break;
-    case "ja":
-      document.getElementById("calculation_title").innerText = "複利計算機";
-      document.getElementById("start_amount_label").innerText = "初期金額";
-      document.getElementById("duration_label").innerText = "期間";
-      document.getElementById("profit_rate_label").innerText = "利益率 (%)";
-      document.getElementById("cal_btn").innerText = "計算する";
-      document.getElementById("total_profit_title").innerText = "合計利益";
-      document.getElementById("total_profit_percentage_title").innerText =
-        "合計利益率";
-      document
-        .querySelector(".amount_input")
-        .setAttribute("placeholder", "金額を入力してください.");
-      document
-        .querySelector(".duration_input")
-        .setAttribute("placeholder", "期間を入力してください.");
-      document
-        .querySelector(".profit_input")
-        .setAttribute("placeholder", "収益率を入力してください.");
+//       try {
+//         document.querySelector(".csv_btn").innerText = "下载CSV";
+//         document.querySelector(".duration").innerText = "期间";
+//         document.querySelector(".profit").innerText = "收益";
+//         document.querySelector(".total").innerText = "总额";
+//         document.querySelector(".profit_percent").innerText = "收益率";
+//       } catch (error) {}
+//       break;
+//     case "ja":
+//       document.getElementById("calculation_title").innerText = "複利計算機";
+//       document.getElementById("start_amount_label").innerText = "初期金額";
+//       document.getElementById("duration_label").innerText = "期間";
+//       document.getElementById("profit_rate_label").innerText = "利益率 (%)";
+//       document.getElementById("cal_btn").innerText = "計算する";
+//       document.getElementById("total_profit_title").innerText = "合計利益";
+//       document.getElementById("total_profit_percentage_title").innerText =
+//         "合計利益率";
+//       document
+//         .querySelector(".amount_input")
+//         .setAttribute("placeholder", "金額を入力してください.");
+//       document
+//         .querySelector(".duration_input")
+//         .setAttribute("placeholder", "期間を入力してください.");
+//       document
+//         .querySelector(".profit_input")
+//         .setAttribute("placeholder", "収益率を入力してください.");
 
-      try {
-        document.querySelector(".csv_btn").innerText = "CSV ダウンロード";
-        document.querySelector(".duration").innerText = "期間";
-        document.querySelector(".profit").innerText = "収益";
-        document.querySelector(".total").innerText = "総額";
-        document.querySelector(".profit_percent").innerText = "収益率";
-      } catch (error) {}
-      break;
-    default:
-      // 기본값은 영어로 설정
-      document.getElementById("calculation_title").innerText =
-        "Calculate Compound Interest";
-      document.getElementById("start_amount_label").innerText =
-        "Starting Amount";
-      document.getElementById("duration_label").innerText = "Duration";
-      document.getElementById("profit_rate_label").innerText =
-        "Profit Rate (%)";
-      document.getElementById("cal_btn").innerText = "Calculate";
-      document.getElementById("total_profit_title").innerText = "Total Profit";
-      document.getElementById("total_profit_percentage_title").innerText =
-        "Total Profit Percentage";
-      document
-        .querySelector(".amount_input")
-        .setAttribute("placeholder", "Set the amount.");
-      document
-        .querySelector(".duration_input")
-        .setAttribute("placeholder", "Set a period");
-      document
-        .querySelector(".profit_input")
-        .setAttribute("placeholder", "Set your rate of return.");
+//       try {
+//         document.querySelector(".csv_btn").innerText = "CSV ダウンロード";
+//         document.querySelector(".duration").innerText = "期間";
+//         document.querySelector(".profit").innerText = "収益";
+//         document.querySelector(".total").innerText = "総額";
+//         document.querySelector(".profit_percent").innerText = "収益率";
+//       } catch (error) {}
+//       break;
+//     default:
+//       // 기본값은 영어로 설정
+//       document.getElementById("calculation_title").innerText =
+//         "Calculate Compound Interest";
+//       document.getElementById("start_amount_label").innerText =
+//         "Starting Amount";
+//       document.getElementById("duration_label").innerText = "Duration";
+//       document.getElementById("profit_rate_label").innerText =
+//         "Profit Rate (%)";
+//       document.getElementById("cal_btn").innerText = "Calculate";
+//       document.getElementById("total_profit_title").innerText = "Total Profit";
+//       document.getElementById("total_profit_percentage_title").innerText =
+//         "Total Profit Percentage";
+//       document
+//         .querySelector(".amount_input")
+//         .setAttribute("placeholder", "Set the amount.");
+//       document
+//         .querySelector(".duration_input")
+//         .setAttribute("placeholder", "Set a period");
+//       document
+//         .querySelector(".profit_input")
+//         .setAttribute("placeholder", "Set your rate of return.");
 
-      try {
-        document.querySelector(".csv_btn").innerText = "Download CSV";
-        document.querySelector(".duration").innerText = "Period";
-        document.querySelector(".profit").innerText = "Revenue";
-        document.querySelector(".total").innerText = "Total";
-        document.querySelector(".profit_percent").innerText = "Return";
-      } catch (error) {}
-  }
-}
+//       try {
+//         document.querySelector(".csv_btn").innerText = "Download CSV";
+//         document.querySelector(".duration").innerText = "Period";
+//         document.querySelector(".profit").innerText = "Revenue";
+//         document.querySelector(".total").innerText = "Total";
+//         document.querySelector(".profit_percent").innerText = "Return";
+//       } catch (error) {}
+//   }
+// }
 
 
 

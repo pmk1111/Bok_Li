@@ -160,6 +160,7 @@ nav.nav_dark {
   background-color: white;
   box-shadow: 0 0 10px 0px rgba(0 0 0 / 15%);
   transition: all 0.2s ease; /* 슬라이드 업/다운 효과를 위한 트랜지션 추가 */
+  color: #3a3a3a;
 }
 .menu.open{
   height: 250px;
@@ -179,7 +180,14 @@ nav.nav_dark {
   display: inline-block;
   width: 20%;
 }
-
+.menu_container a{
+  text-decoration: none;
+  color: #3a3a3a;
+}
+.menu_container a.link_dark{
+  text-decoration: none;
+  color: white;
+}
 .menu_content ul li{
   list-style-type:none;
   margin: 5px 0;
